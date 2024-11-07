@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 01:43:23 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/06 02:01:23 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/07 01:06:43 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ WrongAnimal::~WrongAnimal()
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << "GRRRPAAAAW" << std::endl;
+    std::cout << "WrongAnimal Sound" << std::endl;
 }
 
 std::string WrongAnimal::getType() const
@@ -48,5 +48,5 @@ std::string WrongAnimal::getType() const
 
 void WrongAnimal::setType(std::string name)
 {
-    this->type = name;   
+    this->type = name;
 }

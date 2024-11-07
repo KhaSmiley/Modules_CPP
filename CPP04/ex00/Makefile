@@ -3,7 +3,8 @@ SRC		= main.cpp \
 			Animal.cpp \
 			Dog.cpp \
 			Cat.cpp \
-			WrongAnimal.cpp
+			WrongAnimal.cpp \
+			WrongCat.cpp
 OBJ		= $(SRC:%.cpp=%.o)
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98

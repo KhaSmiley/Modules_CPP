@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:41:57 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/06 02:06:23 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/07 01:14:42 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main()
 {

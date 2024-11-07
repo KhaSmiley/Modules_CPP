@@ -1,39 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/06 02:12:32 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/07 01:46:10 by kboulkri         ###   ########.fr       */
+/*   Created: 2024/11/07 00:06:39 by kboulkri          #+#    #+#             */
+/*   Updated: 2024/11/07 01:03:57 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Brain.hpp"
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-Brain::Brain()
-{
-    std::cout << "Brain default constructor" << std::endl;
-}
+#include <iostream>
+#include "WrongAnimal.hpp"
 
-Brain::Brain(const Brain &src)
+class WrongCat : public WrongAnimal
 {
-    *this = src;
-}
+    public:
+		WrongCat (void);
+		WrongCat (std::string name);
+		WrongCat (WrongCat const &src);
+		~WrongCat (void);
+		WrongCat	&operator= (WrongCat const &rhs);
 
-Brain::~Brain()
-{
-    std::cout << "Brain destructor called" << std::endl;
-}
+		void		makeSound (void) const;
 
-Brain &Brain::operator=(Brain const &rhs)
-{
-    this->setIdeas() = rhs.getIdeas();
-    return *this;
-}
+        void setType(std::string name);
+		std::string	getType (void) const;	
+};
 
-void Brain::setIdeas(std::string )
-{
-    
-}
+#endif
