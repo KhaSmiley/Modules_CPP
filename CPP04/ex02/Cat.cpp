@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:38:29 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/08 01:05:01 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 01:09:29 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 Cat::Cat()
 {
     type = "Cat";
-    std::cout << "Cat :: constructor called" << std::endl;
+    std::cout << "Cat :: Default constructor called" << std::endl;
     this->brain = new Brain();
 }
 

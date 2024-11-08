@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:20 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/05 00:47:02 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/07 23:33:07 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ class Animal
     public:
     
         Animal();
+        Animal(std::string name);
         Animal(const Animal &src);
         Animal &operator=(const Animal &src);
         virtual ~Animal();

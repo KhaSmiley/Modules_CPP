@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 17:31:57 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/04 03:16:39 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 00:24:00 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 ClapTrap::ClapTrap()
 {
+    std::cout << "ClapTrap constructor called" << std::endl;
     this->_name = "Default";
     this->_hit_points = 10;
     this->_energy_points = 10;
@@ -33,7 +34,7 @@ ClapTrap::ClapTrap(std::string name)
 
 ClapTrap::ClapTrap(const ClapTrap& src)
 {
-    std::cout << "Copy constructor called" << std::endl;
+    std::cout << "ClapTrap Copy constructor called" << std::endl;
     this->_name = src._name;
     this->_attack_damage = src._attack_damage;
     this->_hit_points = src._hit_points;
@@ -52,7 +53,7 @@ ClapTrap::~ClapTrap(void)
 
 ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 {
-    std::cout << "Copy assignment operator called" << std::endl;
+    std::cout << "ClapTrap Copy assignment operator called" << std::endl;
     this->_name = rhs._name;
     this->_attack_damage = rhs._attack_damage;
     this->_hit_points = rhs._hit_points;
@@ -65,7 +66,6 @@ ClapTrap & ClapTrap::operator=(ClapTrap const & rhs)
 
 void ClapTrap::attack(const std::string& target)
 {
-    (void)target;
     if (getHitPoints() > 0 && getEnergyPoints() > 0)
     {
         std::cout << "ClapTrap " << getName() << " attacks " << target << " causing " << getAttackDamage() << " points of damage ! 🥊" << std::endl;

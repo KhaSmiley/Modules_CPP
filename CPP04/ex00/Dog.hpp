@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:39:58 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/05 00:48:12 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/07 21:26:44 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ class Dog : public Animal
     public :
         
         Dog();
+        Dog(std::string name);
         Dog(const Dog &src);
         Dog &operator=(const Dog &src);
         ~Dog();

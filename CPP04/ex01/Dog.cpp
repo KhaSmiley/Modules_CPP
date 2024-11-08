@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:40:00 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/05 00:50:53 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 01:15:03 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,48 @@
 Dog::Dog()
 {
     type = "Dog";
-    std::cout << "Dog Constructor called" << std::endl;
+    std::cout << "Dog :: Default constructor called" << std::endl;
+    this->brain = new Brain();
 }
 
-Dog::Dog(const Dog &src)
+Dog::Dog(std::string name)
 {
+    this->type = name;
+    std::cout << "Dog :: constructor called" << std::endl;
+    this->brain = new Brain();
+}
+
+Dog::Dog(const Dog &src) : Animal(src)
+{
+    this->brain = new Brain();
     *this = src;
-    std::cout << "Dog Copy constructor called" << std::endl;
+    std::cout << "Dog :: Copy constructor called" << std::endl;
 }
 
-Dog &Dog::operator=(const Dog &src)
+Dog	&Dog::operator=(const Dog& rhs)
 {
-    type = src.type;
-    std::cout << "Dog Assignation operator called" << std::endl;
-    return *this;
+	std::cout << "Dog :: Copy assignment operator called" << std::endl;
+	if (this == &rhs)
+		return (*this);
+    delete this->brain;
+	brain = new Brain(*rhs.brain);
+	return (*this);
 }
 
 Dog::~Dog()
 {
-    std::cout << "Dog Destructor called" << std::endl;
+    delete this->brain;
+    std::cout << "Dog :: Destructor called" << std::endl;
+}
+
+void Dog::setType(std::string name)
+{
+    this->type = name;
+}
+
+std::string Dog::getType() const
+{
+    return(this->type);
 }
 
 void Dog::makeSound() const
@@ -41,12 +64,17 @@ void Dog::makeSound() const
     std::cout << "Wouf Wouf" << std::endl;
 }
 
-std::string Dog::getType() const
+Brain *Dog::getBrain()
 {
-    return (this->type);
+    return(this->brain);
 }
 
-void Dog::setType(std::string name)
+void Dog::setIdeas(std::string name)
 {
-    this->type = name;   
+    this->brain->setIdeas(name);
+}
+
+std::string Dog::getIdeas(int index)
+{
+    return(this->brain->getIdeas(index));
 }

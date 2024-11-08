@@ -1,4 +1,4 @@
-NAME	= AnimalHertiage
+NAME	= AnimalAbstract
 SRC		= main.cpp \
 			Animal.cpp \
 			Dog.cpp \

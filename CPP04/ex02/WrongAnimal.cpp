@@ -15,13 +15,19 @@
 WrongAnimal::WrongAnimal()
 {
     type = "WrongAnimal";
-    std::cout << "WrongAnimal :: Default constructor called" << std::endl;
+    std::cout << "WrongAnimal :: Default Constructor called" << std::endl;
+}
+
+WrongAnimal::WrongAnimal(std::string name)
+{
+    this->type = name;
+    std::cout << "WrongAnimal :: Constructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &src)
 {
     *this = src;
-    std::cout << "WrongAnimal :: Copy constructor called" << std::endl;
+    std::cout << "WrongAnima :: Copy constructor called" << std::endl;
 }
 
 WrongAnimal &WrongAnimal::operator=(const WrongAnimal &src)

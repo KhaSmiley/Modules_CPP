@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 01:43:21 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/07 01:06:10 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 00:51:02 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,35 +16,17 @@
 #include "Animal.hpp"
 #include <iostream>
 
-// class WrongAnimal
-// {
-//     public :
-    
-//         WrongAnimal();
-//         WrongAnimal(const WrongAnimal &src);
-//         virtual ~WrongAnimal();
-        
-//         WrongAnimal &operator=(const WrongAnimal &src);
-        
-// 		virtual void makeSound() const;
-//         virtual std::string getType() const;
-//         virtual void setType(std::string name);
-
-//     protected :
-
-//         std::string type;
-// };
-
 class WrongAnimal
 {
     public:
     
         WrongAnimal();
+        WrongAnimal(std::string name);
         WrongAnimal(const WrongAnimal &src);
         WrongAnimal &operator=(const WrongAnimal &src);
         virtual ~WrongAnimal();
         
-        virtual void makeSound() const;
+        void makeSound() const;
         virtual std::string getType() const;
         virtual void setType(std::string name);
 

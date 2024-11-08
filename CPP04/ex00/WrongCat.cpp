@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 00:06:20 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/07 01:13:14 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 01:09:29 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,31 @@
 WrongCat::WrongCat()
 {
     type = "WrongCat";
-    std::cout << "WrongCat Constructor called" << std::endl;
+    std::cout << "WrongCat :: Default Constructor called" << std::endl;
+}
+
+WrongCat::WrongCat(std::string name)
+{
+    this->type = name;
+    std::cout << "WrongCat :: Construstor called" << std::endl;
 }
 
 WrongCat::WrongCat(const WrongCat &src)
 {
     *this = src;
-    std::cout << "WrongCat Copy constructor called" << std::endl;
+    std::cout << "WrongCat :: Copy constructor called" << std::endl;
 }
 
 WrongCat &WrongCat::operator=(const WrongCat &src)
 {
     type = src.type;
-    std::cout << "WrongCat Assignation operator called" << std::endl;
+    std::cout << "WrongCat :: Assignation operator called" << std::endl;
     return *this;
 }
 
 WrongCat::~WrongCat()
 {
-    std::cout << "WrongCat Destructor called" << std::endl;
+    std::cout << "WrongCat :: Destructor called" << std::endl;
 }
 void WrongCat::makeSound() const
 {

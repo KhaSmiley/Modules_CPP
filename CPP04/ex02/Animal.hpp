@@ -1,35 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cat.hpp                                            :+:      :+:    :+:   */
+/*   Animal.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/04 19:33:57 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/07 21:28:11 by kboulkri         ###   ########.fr       */
+/*   Created: 2024/11/04 19:39:20 by kboulkri          #+#    #+#             */
+/*   Updated: 2024/11/07 23:47:10 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CAT_HPP
-#define CAT_HPP
+#ifndef ANIMAL_HPP
+#define ANIMAL_HPP
 
-#include "Animal.hpp"
 #include <iostream>
 
-class Cat : public Animal
+class Animal
 {
-    public :
+    public:
+    
+        Animal();
+        Animal(std::string name);
+        Animal(const Animal &src);
+        Animal &operator=(const Animal &src);
+        virtual ~Animal();
         
-        Cat();
-        Cat(std::string name);
-        Cat(const Cat &src);
-        Cat &operator=(const Cat &src);
-        ~Cat();
-        
-        void makeSound() const;
+        virtual void makeSound() const = 0;
+        virtual std::string getType() const;
+        virtual void setType(std::string name);
 
-        std::string getType() const;
-        void setType(std::string name);
+    protected :
+    
+        std::string type;
 };
 
 #endif

@@ -34,13 +34,13 @@ WrongCat::WrongCat(const WrongCat &src)
 WrongCat &WrongCat::operator=(const WrongCat &src)
 {
     type = src.type;
-    std::cout << "WrongCat Assignation operator called" << std::endl;
+    std::cout << "WrongCat :: Assignation operator called" << std::endl;
     return *this;
 }
 
 WrongCat::~WrongCat()
 {
-    std::cout << "WrongCat Destructor called" << std::endl;
+    std::cout << "WrongCat :: Destructor called" << std::endl;
 }
 void WrongCat::makeSound() const
 {

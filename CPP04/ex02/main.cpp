@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 19:41:57 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/11/08 01:12:13 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/11/08 01:11:25 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 int	main(void)
 {
+
+    // Uncomment the following line to test the abstract class
+    // Animal animal;
 	Animal*	tab[10];
 
 	std::cout << std::endl << "------------- Constructor of dogs------------" << std::endl << std::endl;
