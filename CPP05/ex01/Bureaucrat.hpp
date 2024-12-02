@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 18:40:35 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/02 21:29:31 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/02 21:29:26 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ class Bureaucrat
     std::string getName();
     int getGrade() const;
     void setGrade(int grade);
-    std::string getName() const;
 
     void AddGrade();
     void MinGrade();
