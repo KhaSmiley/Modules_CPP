@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:40:35 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/02 21:29:31 by kboulkri         ###   ########.fr       */
+/*   Created: 2024/12/10 23:01:06 by kboulkri          #+#    #+#             */
+/*   Updated: 2024/12/10 23:01:27 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,9 @@ class Bureaucrat
     Bureaucrat &operator=(const Bureaucrat &rhs);
     ~Bureaucrat();
 
-    std::string getName();
+    std::string getName() const;
     int getGrade() const;
     void setGrade(int grade);
-    std::string getName() const;
 
     void AddGrade();
     void MinGrade();

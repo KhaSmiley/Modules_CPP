@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:01:06 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 00:01:07 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/11 02:50:12 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 #define BUREAUCRAT_HPP
 
 #include <iostream>
-#include "Form.hpp"
+#include "AForm.hpp"
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -31,7 +31,7 @@ class Bureaucrat
     std::string getName() const;
     int getGrade() const;
     void setGrade(int grade);
-    void signForm(Form &src);
+    void signAForm(AForm &src);
 
     void AddGrade();
     void MinGrade();

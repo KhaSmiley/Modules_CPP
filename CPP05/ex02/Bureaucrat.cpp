@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 22:59:57 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 01:36:24 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/11 02:46:08 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &rhs)
 
 Bureaucrat::~Bureaucrat()   
 {
-    std::cout << "Bureaucrat :: Destructor called" << std::endl;
+    std::cout << "Bureaucrat :: Default Destructor called" << std::endl;
 }
 
 void Bureaucrat::setGrade(int grade)
@@ -79,6 +79,22 @@ void Bureaucrat::MinGrade()
     if (this->grade + 1 > 150)
         throw Bureaucrat::GradeTooLowException();
     this->grade++;
+}
+
+void Bureaucrat::signAForm(AForm &src)
+{
+    if (this->getGrade() > src.get_grade_min_sign())
+    {
+        std::cout << this->getName() << " cannot sign " << src.get_name() << " cause his grade is too low" << std::endl;
+    }
+    else if (src.get_is_signed() == true)
+    {
+        std::cout << this->getName() << " cannot sign " << src.get_name() << " cause the AForm is already signed" << std::endl;
+    }
+    else
+    {
+        src.beSigned(*this);
+    }
 }
 
 std::ostream & operator<<(std::ostream & o, Bureaucrat const & rhs)

@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AAForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:21:42 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 00:46:11 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/11 02:45:17 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef AForm_HPP
+#define AForm_HPP
 
 #include "Bureaucrat.hpp"
 #include <iostream>
 
 class Bureaucrat;
 
-class Form
+class AForm
 {
     public :
 
-        Form();
-        Form(const std::string name, const int grade_min_s, const int grade_min_e);
-        Form(const Form &src);
-        Form &operator=(const Form &rhs);
-        ~Form();
+        AForm();
+        AForm(const std::string name, const int grade_min_s, const int grade_min_e);
+        AForm(const AForm &src);
+        AForm &operator=(const AForm &rhs);
+        ~AForm();
 
         void beSigned(Bureaucrat &src);
 
@@ -53,7 +53,7 @@ class Form
         const int grade_min_exec;
 };
 
-std::ostream & operator<<(std::ostream & o, Form const & rhs);
+std::ostream & operator<<(std::ostream & o, AForm const & rhs);
 
 
 #endif

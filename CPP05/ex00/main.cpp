@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/11 18:40:37 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/02 20:45:23 by kboulkri         ###   ########.fr       */
+/*   Created: 2024/12/10 23:08:29 by kboulkri          #+#    #+#             */
+/*   Updated: 2024/12/11 01:36:11 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int main()
 {
 
-    Bureaucrat CEO("CEO", 0);
-    Bureaucrat director("Director", 0);
+    Bureaucrat CEO("CEO", 1);
+    Bureaucrat director("Director", 1);
     Bureaucrat supervisor("Supervisor", 50);
     Bureaucrat cashier("Cashier", 150);
 
     std::cout << std::endl << "----- Trying to set CEO under 0 -----" << std::endl << std::endl;
     try
     {
-        CEO.setGrade(-1);
+        CEO.setGrade(0);
     }
     catch(std::exception const& error)
     {
@@ -53,7 +53,7 @@ int main()
     std::cout << cashier.getName() << " Cashier's grade : " << cashier.getGrade() << std::endl << std::endl; 
     try
     {
-        CEO.setGrade(0);
+        CEO.setGrade(1);
         director.setGrade(25);
         cashier.AddGrade();
         director.AddGrade();
