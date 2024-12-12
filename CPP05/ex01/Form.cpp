@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:21:16 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 01:39:17 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/11 04:56:04 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,11 @@ std::string Form::get_name() const
 int Form::get_grade_min_sign() const
 {
     return (this->grade_min_sign);
+}
+
+int Form::get_grade_min_exec() const
+{
+    return (this->grade_min_exec);
 }
 
 bool Form::get_is_signed() const

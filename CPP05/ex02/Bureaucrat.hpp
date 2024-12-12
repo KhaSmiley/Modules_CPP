@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 23:01:06 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 02:50:12 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/12 03:28:32 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ class Bureaucrat
     Bureaucrat(const Bureaucrat &src);
     Bureaucrat &operator=(const Bureaucrat &rhs);
     ~Bureaucrat();
+
+    void executeForm(AForm const & form) const;
 
     std::string getName() const;
     int getGrade() const;

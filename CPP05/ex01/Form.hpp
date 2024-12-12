@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:21:42 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/11 00:46:11 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/11 04:56:24 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,13 @@ class Form
         Form(const Form &src);
         Form &operator=(const Form &rhs);
         ~Form();
-
+        
         void beSigned(Bureaucrat &src);
+        virtual void		execute(Bureaucrat const &executor) const = 0;
 
         std::string get_name() const;
         int get_grade_min_sign() const;
+        int get_grade_min_exec() const;
         bool get_is_signed() const;
 
         class GradeTooHighException : public std::exception

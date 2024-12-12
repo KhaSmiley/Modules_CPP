@@ -59,6 +59,11 @@ const char *AForm::GradeTooLowException::what() const throw()
     return ("AForm :: Grade too low\n");
 }
 
+const char *AForm::FormNotSignedException::what() const throw()
+{
+	return ("Form :: Form not signed");
+}
+
 void AForm::beSigned(Bureaucrat &src)
 {
     if (src.getGrade() > this->grade_min_sign)
@@ -66,7 +71,7 @@ void AForm::beSigned(Bureaucrat &src)
     else
     {
         this->is_signed = 1;
-        std::cout << src.getName() << " signed " << this->get_name() << std::endl;
+        // std::cout << src.getName() << " signed " << this->get_name() << std::endl;
     }
 }
 
@@ -78,6 +83,11 @@ std::string AForm::get_name() const
 int AForm::get_grade_min_sign() const
 {
     return (this->grade_min_sign);
+}
+
+int AForm::get_grade_min_exec() const
+{
+    return (this->grade_min_exec);
 }
 
 bool AForm::get_is_signed() const
