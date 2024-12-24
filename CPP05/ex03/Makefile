@@ -4,7 +4,8 @@ SRC		= main.cpp \
 		  PresidentialPardonForm.cpp \
 		  RobotomyRequestForm.cpp \
 		  ShrubberyCreationForm.cpp \
-			Bureaucrat.cpp 
+			Bureaucrat.cpp \
+			Intern.cpp
 OBJ		= $(SRC:%.cpp=%.o)
 CC		= c++
 FLAGS	= -Wall -Wextra -Werror -std=c++98 -g

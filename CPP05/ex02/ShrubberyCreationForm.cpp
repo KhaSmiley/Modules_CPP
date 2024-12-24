@@ -6,14 +6,9 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 03:29:58 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/12 21:46:35 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:07:21 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// ShrubberyCreationForm.cpp
-
-// ShrubberyCreationForm: Required grades: sign 145, exec 137
-// Create a file <target>_shrubbery in the working directory, and writes ASCII trees inside it.
 
 #include "ShrubberyCreationForm.hpp"
 

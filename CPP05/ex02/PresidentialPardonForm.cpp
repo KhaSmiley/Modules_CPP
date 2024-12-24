@@ -6,13 +6,10 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 03:28:52 by kboulkri          #+#    #+#             */
-/*   Updated: 2024/12/12 04:52:55 by kboulkri         ###   ########.fr       */
+/*   Updated: 2024/12/18 00:07:03 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// PresidentialPardonForm.cpp
-// PresidentialPardonForm: Required grades: sign 25, exec 5
-// Informs that <target> has been pardoned by Zaphod Beeblebrox.
 #include "PresidentialPardonForm.hpp"
 
 PresidentialPardonForm::PresidentialPardonForm() : AForm("PresidentialPardonForm", 25, 5), _target("default_target"), _gradeSign(25)
