@@ -49,8 +49,6 @@ bool	checkStr(const std::string &input)
 			return (true);
 		if ((input.c_str()[0] == '-' || input.c_str()[0] == '+') && (input.c_str()[1] < '0' || input.c_str()[1] > '9'))
 			return (true);
-        // if (input.c_str()[input.size() - 1] == '.' )
-        //     return (true);
 		i++;
 		while (input.c_str()[i])
 		{
@@ -119,11 +117,16 @@ int find_type(const std::string &str)
 void toChar(const std::string &str)
 {
     char c = str[0];
-    int i = static_cast<int>(c);
+    
     std::cout << "char: '" << c << "'" << std::endl;
-    std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << static_cast<float>(c) << "f" << std::endl;
-    std::cout << "double: " << static_cast<double>(c) << std::endl;
+    std::cout << "int: " << static_cast<int>(c) << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(c) << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(c) << std::endl;
+}
+
+void toInt(const std::string &str)
+{
+    
 }
 
 void ScalarConverter::convert(const std::string &str)
