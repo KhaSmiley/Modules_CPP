@@ -37,6 +37,38 @@ ScalarConverter::~ScalarConverter()
 {
 }
 
+void	print_special(const std::string& str)
+{
+	if (str == "nanf" || str == "nan")
+	{
+		std::cout << "char : impossible" << std::endl;
+		std::cout << "int : impossible" << std::endl;
+		std::cout << "float : nanf" << std::endl;
+		std::cout << "double : nan" << std::endl;
+	}
+	else if (str == "inff" || str == "inf")
+	{
+		std::cout << "char : impossible" << std::endl;
+		std::cout << "int : impossible" << std::endl;
+		std::cout << "float : inff" << std::endl;
+		std::cout << "double : inf" << std::endl;
+	}
+	else if (str == "+inff" || str == "+inf")
+	{
+		std::cout << "char : impossible" << std::endl;
+		std::cout << "int : impossible" << std::endl;
+		std::cout << "float : +inff" << std::endl;
+		std::cout << "double : +inf" << std::endl;
+	}
+	else if (str == "-inff" || str == "-inf")
+	{
+		std::cout << "char : impossible" << std::endl;
+		std::cout << "int : impossible" << std::endl;
+		std::cout << "float : -inff" << std::endl;
+		std::cout << "double : -inf" << std::endl;
+	}
+}
+
 bool	checkStr(const std::string &input)
 {
     int i = 0;
@@ -126,11 +158,69 @@ void toChar(const std::string &str)
 
 void toInt(const std::string &str)
 {
+    long i = std::atol(str.c_str());
+    char c = static_cast<char>(i);
+    float f = static_cast<float>(i);
+    double d = static_cast<double>(i);
     
+    if (std::isprint(c))
+		std::cout << "char : '" << c << "'" << std::endl;
+	else
+		std::cout << "char : Non displayable" << std::endl;
+	if (i < INT_MIN || i > INT_MAX)
+		std::cout << "int : out of range" << std::endl;
+	else
+		std::cout << "int : " << i << std::endl;
+	std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+void toDouble(const std::string &str)
+{
+    double d = std::atof(str.c_str());
+    char c = static_cast<char>(d);
+    long i = static_cast<long>(d);
+    float f = static_cast<float>(d);
+
+    
+    if (std::isprint(c))
+        std::cout << "char : '" << c << "'" << std::endl;
+    else
+        std::cout << "char : Non displayable" << std::endl;
+    if (i < INT_MIN || i > INT_MAX)
+        std::cout << "int : out of range" << std::endl;
+    else
+        std::cout << "int : " << i << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+}
+
+void toFloat(const std::string &str)
+{
+    float	f = std::atof(str.c_str());
+	char	c = static_cast<char>(f);
+	double	d = static_cast<double>(f);
+	long	i = static_cast<long>(f);
+    
+    if (std::isprint(c))
+        std::cout << "char : '" << c << "'" << std::endl;
+    else
+        std::cout << "char : Non displayable" << std::endl;
+    if (i < INT_MIN || i > INT_MAX)
+        std::cout << "int : out of range" << std::endl;
+    else
+        std::cout << "int : " << i << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << f << "f" << std::endl;
+    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
 }
 
 void ScalarConverter::convert(const std::string &str)
 {
+    if (str == "nan" || str == "nanf" || str == "inf" || str == "inff" || str == "+inf" || str == "+inff" || str == "-inf" || str == "-inff")
+    {
+        print_special(str);
+        return;
+    }
     if(checkStr(str))
     {
         std::cout << "Error: Invalid argument" << std::endl;
@@ -139,16 +229,16 @@ void ScalarConverter::convert(const std::string &str)
     switch (find_type(str))
     {
         case 1:
-            std::cout << "int" << std::endl;
+            toInt(str);
             break;
         case 2:
-            std::cout << "double" << std::endl;
+            toDouble(str);
             break;
         case 3:
             toChar(str);
             break;
         case 4:
-            std::cout << "float" << std::endl;
+            toFloat(str);
             break;
     }
 }
