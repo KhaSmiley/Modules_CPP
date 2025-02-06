@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 22:14:49 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/06 21:21:37 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/06 21:29:15 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ class Array
     Array(const Array &src);
     Array & operator=(const Array &rhs);
     T &operator[](unsigned int nb);
+    const T &operator[](const unsigned int nb) const;
     ~Array();
 
     unsigned int size() const;
@@ -105,6 +106,15 @@ Array<T> & Array<T>::operator=(const Array &rhs)
 template <typename T>
 
 T & Array<T>::operator[](unsigned int nb)
+{
+    if (nb >= this->_size || nb < 0)
+        throw OutofBound();
+    return (this->_array[nb]);    
+}
+
+template <typename T>
+
+const T & Array<T>::operator[](const unsigned int nb) const
 {
     if (nb >= this->_size || nb < 0)
         throw OutofBound();
