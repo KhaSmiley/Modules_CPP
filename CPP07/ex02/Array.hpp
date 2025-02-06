@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Array.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/05 22:14:49 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/06 08:43:02 by marvin           ###   ########.fr       */
+/*   Updated: 2025/02/06 21:21:37 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ Array<T>::Array() : _array(new T[0]), _size(0)
 
 template <typename T>
 
-Array<T>::Array(const Array &src) : _size(src._size), _array(new T[this->size])
+Array<T>::Array(const Array &src) : _array(new T[src._size]), _size(src._size) 
 {
     for(unsigned int i = 0; i < this->_size; i++)
     {
@@ -106,7 +106,7 @@ template <typename T>
 
 T & Array<T>::operator[](unsigned int nb)
 {
-    if (nb > this->_size || nb < 0)
+    if (nb >= this->_size || nb < 0)
         throw OutofBound();
     return (this->_array[nb]);    
 }
