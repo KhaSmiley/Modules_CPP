@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:38:06 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/07 06:23:16 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/07 23:22:50 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,31 @@ class Span
         Span & operator=(Span const & src);
         ~Span();
 
+        unsigned int getSize() const;
+        void print_vector();
+
         void addNumber(int n);
-        void Span::iteratorNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        void iteratorNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+
+        class TooManyNumbers : public std::exception
+        {
+            public :
+
+                virtual const char *what() const throw()
+                {
+                    return ("Too many numbers stocked");
+                }
+        };
+
+        class NotEnoughNumbers : std::exception
+        {
+            public :
+
+                virtual const char *what() const throw()
+                {
+                    return ("Not enough numbers stocked");
+                }
+        };
         
     private :
         
