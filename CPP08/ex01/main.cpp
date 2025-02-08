@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:38:11 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/07 23:42:13 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:09:46 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,45 @@
 
 int main()
 {
-    Span test(6);
 
-    for(unsigned int i = 0; i < test.getSize(); i++)
+    std::cout << " -------- First test --------\n";
+    
+    try
     {
-        test.addNumber(i);
+        Span test(6);
+
+        test.addNumber(6);
+        test.addNumber(3);
+        test.addNumber(17);
+        test.addNumber(9);
+        test.addNumber(11);
+        // test.addNumber(12);
+        
+        std::cout << test.shortestSpan() << std::endl;
+        std::cout << test.longestSpan() << std::endl;
     }
-    std::vector<int> myvec;  // Ensure this is big enough
-    Span plouf(1000);  // Make sure `plouf` has enough space
-    for(int i = 0; i < 1000; i++)
+    catch(const std::exception& e)
     {
-        myvec.push_back(i);
+        std::cerr << e.what() << '\n';
     }
-    plouf.iteratorNumber(myvec.begin(), myvec.end());
-    plouf.print_vector();    
+    std::cout << " -------- Second test --------\n";
+    try
+    {
+        std::vector<int> myvec;  // Ensure this is big enough
+        Span plouf(10000);  // Make sure `plouf` has enough space
+        for(int i = 0; i < 10000; i++)
+        {
+            myvec.push_back(i);
+        }
+        plouf.iteratorNumber(myvec.begin(), myvec.end());
+        std::cout << "Shortest = " << plouf.shortestSpan() << std::endl;
+        std::cout << "Longest = " << plouf.longestSpan() << std::endl;
+        // plouf.addNumber(9);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+    
 }

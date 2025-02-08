@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:38:08 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/07 23:34:41 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/08 11:10:50 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,39 @@ void Span::iteratorNumber(std::vector<int>::iterator begin, std::vector<int>::it
     srand(time(NULL));
     for(std::vector<int>::iterator it = begin; it != end; ++it)
     {
-        addNumber(rand() % 100);
+        addNumber(rand());
     }
+}
+
+int Span::shortestSpan()
+{
+    if (_v.size() < 2)
+        throw NotEnoughNumbers();
+    int min;
+    std::sort(_v.begin(), _v.end());
+    std::vector<int>::iterator it = _v.begin();
+    std::vector<int>::iterator it2 = it;
+    it2++;
+    min = (*it2) - (*it);
+    while(it2 != _v.end())
+    {
+        if ((*it2) - *it < min)
+            min = (*it2) - *it;
+        it2++;
+        it++;   
+    }
+    return (min);
+}
+
+int Span::longestSpan()
+{
+    if (_v.size() < 2)
+        throw NotEnoughNumbers();
+    int max;
+    std::sort(_v.begin(), _v.end());
+    std::vector<int>::iterator it = _v.begin();
+    max = _v.back() - (*it);
+    return (max);
 }
 
 unsigned int Span::getSize() const

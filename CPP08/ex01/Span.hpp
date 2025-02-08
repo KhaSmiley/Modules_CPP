@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Span.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/07 05:38:06 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/07 23:22:50 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/08 10:23:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ class Span
 
         void addNumber(int n);
         void iteratorNumber(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+
+        int shortestSpan();
+        int longestSpan();
 
         class TooManyNumbers : public std::exception
         {
