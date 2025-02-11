@@ -77,11 +77,21 @@ void BitcoinExchange::parse_date()
 
 void BitcoinExchange::stock_data()
 {
-    this->infile.open(_file.c_str());
     std::string line;
-    while(getline(infile, line));
+    std::ifstream file;
+    int i = 0;
+    
+    this->infile.open(_file.c_str());
+    while(getline(file, line))
     {
-        this->_dataInfile.insert(std::pair<int, std::string>(i, input_line))
-
+        _dataInfile.insert(std::pair<int, std::string>(i, line));
+        i++;
     }
+    this->infile.close();
+    file.open("data.csv");
+    while(getline(file, line))
+    {
+        _dataBtc.insert(std::pair<std::string, float>(line.substr(0, 10), atof(line.substr(11).c_str())));
+    }
+    file.close();
 }
