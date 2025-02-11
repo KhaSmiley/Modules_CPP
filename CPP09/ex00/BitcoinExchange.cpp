@@ -18,18 +18,21 @@ const char *BitcoinExchange::DateError::what() const throw()
 void BitcoinExchange::parse_file(char *file)
 {
     std::ifstream infile;
-
-    infile.open(file);
+    _file = file;
+    infile.open(_file.c_str());
     if (!infile.is_open())
         throw FileError();
     data.open("data.csv");
     if (!infile.is_open())
         throw FileError();
+    infile.close();
+    data.close();
 }
 
 void BitcoinExchange::parse_date()
 {
     std::string line;
+    infile.open(_file.c_str());
     while(getline(this->infile, line))
     {
         int Year;
@@ -41,23 +44,44 @@ void BitcoinExchange::parse_date()
         Day = atoi(line.substr(8, 2).c_str());
     
         if (Year > 2025 ||  Year < 2000)
+        {
+            this->infile.close();
             throw DateError();
+        }    
         if (Month > 12 || Month < 0)
+        {
+            this->infile.close();
             throw DateError();
+        }
         if (Day > 31 || Day < 1)
+        {
+            this->infile.close();
             throw DateError();
+        }
         if (Month == 2 || Month == 4 || Month == 6 || Month == 9 || Month == 11)
             if (Day == 31)
-                throw DateError();
+            {
+                    this->infile.close();
+                    throw DateError();
+            }
         if (Month == 2)
             if(Year % 4 == 0)
                 if (Day > 29)
+                {
+                    this->infile.close();
                     throw DateError();
-        
+                }
+        infile.close();
     }
 }
 
 void BitcoinExchange::stock_data()
 {
+    this->infile.open(_file.c_str());
+    std::string line;
+    while(getline(infile, line));
+    {
+        this->_dataInfile.insert(std::pair<int, std::string>(i, input_line))
 
+    }
 }

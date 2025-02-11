@@ -13,6 +13,7 @@ class BitcoinExchange
 
         void parse_date();
         void parse_file(char *file);
+        void stock_data();
         class FileError : public std::exception
         {
             public :
@@ -26,6 +27,7 @@ class BitcoinExchange
 
     private :
 
+        std::string _file;
         std::map<int, std::string>  _dataInfile;
         std::map<std::string, float>  _dataBtc;
         std::string _date;
