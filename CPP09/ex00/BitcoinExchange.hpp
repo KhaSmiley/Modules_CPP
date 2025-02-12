@@ -11,9 +11,13 @@ class BitcoinExchange
 {
     public :
 
-        void parse_date();
+        void print_value(float price, std::string line);
+        int parse_date(std::string line);
         void parse_file(char *file);
-        void stock_data();
+        int stock_data();
+        void makeitwork();
+        void find_value(std::string line);
+
         class FileError : public std::exception
         {
             public :
@@ -31,8 +35,8 @@ class BitcoinExchange
         std::map<int, std::string>  _dataInfile;
         std::map<std::string, float>  _dataBtc;
         std::string _date;
-        float   _price;
-        float   _finalValue;
+        // float   _price;
+        // float   _finalValue;
 
         std::ifstream infile;
         std::ifstream data;

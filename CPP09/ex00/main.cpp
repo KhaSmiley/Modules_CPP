@@ -19,9 +19,11 @@ int main(int ac, char **av)
         BitcoinExchange Exchanger;
         try
         {
+
             Exchanger.parse_file(av[1]);
-            Exchanger.parse_date();
-            Exchanger.stock_data();
+            if (Exchanger.stock_data())
+                return 1;
+            Exchanger.makeitwork();
         }
         catch (const std::exception &e)
         {
