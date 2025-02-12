@@ -125,8 +125,7 @@ void BitcoinExchange::print_value(float price, std::string line)
     float btc;
     (void)price;
     btc = atof(line.substr(12).c_str());
-    std::cout << price << std::endl;
-    // std::cout << line.substr(0, 10) << " =>" << line.substr(12) << " = " << btc * price << std::endl;
+    std::cout << line.substr(0, 10) << " =>" << line.substr(12) << " = " << btc * price << std::endl;
 }
 
 void BitcoinExchange::find_value(std::string line)
