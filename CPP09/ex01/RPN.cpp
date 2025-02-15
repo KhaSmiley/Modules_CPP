@@ -66,7 +66,7 @@ void RPN::parse_input()
         }
         else if (_input[i] == '+' || _input[i] == '-' || _input[i] == '*' || _input[i] == '/')
         {
-            if (operand > 3 || flag_nb > 2)
+            if (operand > 3)
                 throw invalidInput();
             operand++;
             flag_nb = 0;

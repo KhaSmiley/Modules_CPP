@@ -19,7 +19,7 @@ int main(int ac, char **av)
         BitcoinExchange Exchanger;
         try
         {
-
+            
             Exchanger.parse_file(av[1]);
             if (Exchanger.stock_data())
                 return 1;

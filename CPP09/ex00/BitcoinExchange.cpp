@@ -34,7 +34,9 @@ int BitcoinExchange::parse_date(std::string line)
     int Year;
     int Month;
     int Day;
-        
+
+    if (line.empty())
+        return (2);
     Year = atoi(line.substr(0, 4).c_str());
     Month = atoi(line.substr(5, 2).c_str());
     Day = atoi(line.substr(8, 2).c_str());
@@ -58,7 +60,7 @@ int BitcoinExchange::parse_date(std::string line)
         }
     if (Month == 2)
         if(Year % 4 == 0)
-            if (Day > 29)
+            if (Day >= 29)
             {
                 return (1);
             }
@@ -103,47 +105,86 @@ int BitcoinExchange::stock_data()
 void BitcoinExchange::makeitwork()
 {
     std::map<int, std::string>::iterator it = _dataInfile.begin();
-    
     while(it != _dataInfile.end())
     {
-        if (parse_date(it->second))
+        if (parse_date(it->second) == 1)
             std::cout << "Error: bad input => " << it->second << std::endl;
-        else if (atof(it->second.substr(12).c_str()) < 0 || atof(it->second.substr(12).c_str()) > 1000)
+        else if (parse_date(it->second) == 2)
         {
-            if (atof(it->second.substr(12).c_str()) > 1000)
+            it++;
+            continue ;
+        }
+        int start = parse_value(it->second);
+        if (!start)
+        {
+            std::cout << "Error: bad input => " << it->second << std::endl;
+            it++;
+            continue;
+        }
+        else if (atof(it->second.substr(start).c_str()) < 0 || atof(it->second.substr(start).c_str()) > 1000)
+        {
+            if (atof(it->second.substr(start).c_str()) > 1000)
                 std::cout << "Error : too large a number." << std::endl;
             else
                 std::cout << "Error : not a positive number." << std::endl;
         }
         else
-            find_value(it->second);
+            find_value(it->second, start);
         it++;
     }
 }
-void BitcoinExchange::print_value(float price, std::string line)
+void BitcoinExchange::print_value(float price, std::string line, int start)
 {
     float btc;
     (void)price;
-    btc = atof(line.substr(12).c_str());
-    std::cout << line.substr(0, 10) << " =>" << line.substr(12) << " = " << btc * price << std::endl;
+    btc = atof(line.substr(start).c_str());
+    std::cout << line.substr(0, 10) << " => " << line.substr(start) << " = " << btc * price << std::endl;
 }
 
-void BitcoinExchange::find_value(std::string line)
+void BitcoinExchange::find_value(std::string line, int start)
 {
     std::map<std::string, float>::iterator it = _dataBtc.begin();
     while(it != _dataBtc.end())
     {
         if (std::strcmp(it->first.c_str(), line.substr(0, 10).c_str()) == 0)
         {
-            print_value(it->second, line);
+            print_value(it->second, line, start);
             break;
         }
         else if (std::strcmp(it->first.c_str(), line.substr(0, 10).c_str()) > 0)
         {
             it--;
-            print_value(it->second, line);
+            print_value(it->second, line, start);
             break;
         }
         it++;
     }
+}
+
+int BitcoinExchange::parse_value(std::string line)
+{
+    int start = 0;
+    for(unsigned long int i = 0; i < line.size(); i++)
+    {
+        int nb_dots = 0;
+        while(line[i] && line[i] != '|')
+        {
+            i++;
+        }
+        while(line[++i] && (line[i] == ' ' || line[i] == '\t'))
+        {
+        }
+        start = i;
+        while(line[i] && (isdigit(line[i]) || line[i] == '.'))
+        {
+            if (line[i] == '.')
+                ++nb_dots;
+            if(nb_dots > 1)
+                return(0);
+            i++;
+        }
+        if(line[i] && !isdigit(line[i]))
+            return (0);
+    }
+    return (start);
 }
