@@ -94,7 +94,13 @@ int BitcoinExchange::stock_data()
     file.open("data.csv");
     while(getline(file, line))
     {
-        _dataBtc.insert(std::pair<std::string, float>(line.substr(0, 10), atof(line.substr(11).c_str())));
+        if (line.empty() && i == 0)
+        {
+            file.close();
+            return 1;
+        }
+        if (isdigit(line[0]))
+            _dataBtc.insert(std::pair<std::string, float>(line.substr(0, 10), atof(line.substr(11).c_str())));
         i++;
     }
     if (i == 0)
@@ -153,6 +159,11 @@ void BitcoinExchange::find_value(std::string line, int start)
         }
         else if (std::strcmp(it->first.c_str(), line.substr(0, 10).c_str()) > 0)
         {
+            if (it == _dataBtc.begin())
+            {
+                std::cout << "Error : No data available " << std::endl;
+                break;
+            }
             it--;
             print_value(it->second, line, start);
             break;
