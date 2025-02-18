@@ -41,40 +41,46 @@ int RPN::getResult()
 
 void RPN::parse_input()
 {
-    int flag_nb = 0;
-    int operand = 0;
+    size_t i = 0;
+    int stack_size = 0;
 
-    int j = 0;
-    while((_input[j] && (_input[j] >= '0' && _input[j] <= '9')) || (_input[j] == ' ' || _input[j] == '\t'))
+    while (i < _input.size())
     {
-        if (_input[j] >= '0' && _input[j] <= '9')
-        {
-            if (flag_nb > 2)
-                throw invalidInput();
-            flag_nb++;
-        }
-        j++;
-    }
-    for(long unsigned int i = j; i < _input.size(); ++i)
-    {
+        // Skip whitespace
+        while (i < _input.size() && (_input[i] == ' ' || _input[i] == '\t'))
+            i++;
+            
+        if (i >= _input.size())
+            break;
+
+        // Handle numbers
         if (_input[i] >= '0' && _input[i] <= '9')
         {
-            if (flag_nb > 2)
-                throw invalidInput();
-            flag_nb++;
-            operand = 0;
+            stack_size++;
+            // Skip the rest of the number
+            while (i < _input.size() && _input[i] >= '0' && _input[i] <= '9')
+                i++;
+            continue;
         }
-        else if (_input[i] == '+' || _input[i] == '-' || _input[i] == '*' || _input[i] == '/')
+
+        // Handle operators
+        if (_input[i] == '+' || _input[i] == '-' || _input[i] == '*' || _input[i] == '/')
         {
-            if (operand > 3)
+            if (stack_size < 2)  // Need at least 2 numbers for an operation
                 throw invalidInput();
-            operand++;
-            flag_nb = 0;
+            stack_size--; // An operation consumes 2 numbers and produces 1
+            i++;
+            continue;
         }
-        else if (_input[i] == ' ' || _input[i] == '\t')
-            continue ;
+
+        // If we get here, we found an invalid character
+        if (_input[i] != ' ' && _input[i] != '\t')
+            throw invalidInput();
+        i++;
     }
-    if (operand != flag_nb  - 1)
+
+    // At the end, we should have exactly one number left
+    if (stack_size != 1)
         throw invalidInput();
 }
 

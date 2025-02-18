@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.hpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/18 05:40:01 by kboulkri          #+#    #+#             */
+/*   Updated: 2025/02/18 05:43:24 by kboulkri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -10,6 +22,12 @@
 class BitcoinExchange
 {
     public :
+
+        BitcoinExchange();
+        BitcoinExchange(const BitcoinExchange &src);
+        BitcoinExchange &operator=(const BitcoinExchange &src);
+        ~BitcoinExchange();
+        
 
         void print_value(float price, std::string line, int start);
         int parse_date(std::string line);

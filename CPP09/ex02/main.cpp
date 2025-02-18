@@ -5,29 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/02/18 05:40:04 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/18 05:40:09 by kboulkri         ###   ########.fr       */
+/*   Created: 2025/02/18 05:35:21 by kboulkri          #+#    #+#             */
+/*   Updated: 2025/02/18 05:35:22 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
-
-int main(int ac, char **av)
-{
-    if (ac == 2)
-    {
-        BitcoinExchange Exchanger;
-        try
-        {
-            
-            Exchanger.parse_file(av[1]);
-            if (Exchanger.stock_data())
-                return 1;
-            Exchanger.makeitwork();
-        }
-        catch (const std::exception &e)
-        {
-            std::cout << e.what();
-        }
-    }
-}

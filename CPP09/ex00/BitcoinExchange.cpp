@@ -1,9 +1,41 @@
-
-
-
-
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   BitcoinExchange.cpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/18 05:39:56 by kboulkri          #+#    #+#             */
+/*   Updated: 2025/02/18 05:43:36 by kboulkri         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+
+BitcoinExchange::BitcoinExchange()
+{
+}
+
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &src)
+{
+    *this = src;
+}
+
+BitcoinExchange &BitcoinExchange::operator=(const BitcoinExchange &src)
+{
+    if (this != &src)
+    {
+        _file = src._file;
+        _dataInfile = src._dataInfile;
+        _dataBtc = src._dataBtc;
+        _date = src._date;
+    }
+    return (*this);
+}
+
+BitcoinExchange::~BitcoinExchange()
+{
+}
 
 const char *BitcoinExchange::FileError::what() const throw()
 {
