@@ -19,6 +19,8 @@
 #include <utility>
 #include <algorithm>
 
+
+
 class PmergeMe
 {
     public:
@@ -30,19 +32,35 @@ class PmergeMe
         
         void parse(char **av);
         void check_duplicates(char **av);
+        void check_digits(char **av);
         void add_av(char **av);
         void make_pairs();
         void sort_pairs();
         void push_pairs();
-        void split_sort_pairs();
+        void split_sort_pairs(std::vector<std::pair<int, int> > &pairs, int begin, int end);
+        void merge_sort(std::vector<std::pair<int, int> > &pairs, int begin, int mid, int end);
+        void stock_jacobsthal_sequence(void);
+        void fill_insertion_indices();
+        void insert_into_sorted(void);
+        int	 jacobsthal_sequence(int n);
 
-    private:
+        struct ComparePairs
+        {
+            bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) const
+            {
+                return a.first < b.first;
+            }
+        };
+
+        private:
 
         std::vector<int> _av;
         std::vector<std::pair<int, int> > _makepairs;
         int _straggler;
         std::vector<int> _numbers_smallest;
         std::vector<int> _numbers_largest;
+        std::vector<int> _jacobsthal;
+        std::vector<int> _indexes;
 };
 
 #endif

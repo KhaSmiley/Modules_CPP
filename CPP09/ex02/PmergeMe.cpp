@@ -12,138 +12,96 @@
 
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe()
+void PmergeMe::insert_into_sorted(void)
 {
-}
+    // Insère le plus petit élément en premier
+    _numbers_largest.insert(_numbers_largest.begin(), _numbers_smallest[0]);
 
-PmergeMe::PmergeMe(const PmergeMe &src)
-{
-    *this = src;
-}
-
-PmergeMe &PmergeMe::operator=(const PmergeMe &src)
-{
-    if (this != &src)
+    // Insère les éléments restants en utilisant les indices Jacobsthal
+    for (size_t i = 0; i < _indexes.size(); ++i) // Utilisation d'une boucle classique
     {
-        _av = src._av;
+        size_t index = _indexes[i];
+        if (index < 1 || index > _numbers_smallest.size()) {
+            std::cerr << "Index out of bounds: " << index << std::endl;
+            continue; // Ou gérez l'erreur comme vous le souhaitez
+        }
+        int to_push = _numbers_smallest.at(index - 1); // Récupère l'élément à insérer
+
+        // Trouve la position d'insertion
+        size_t pos = 0;
+        while (pos < _numbers_largest.size() && _numbers_largest[pos] < to_push)
+        {
+            pos++; // Trouve la première position où to_push doit être inséré
+        }
+        
+        _numbers_largest.insert(_numbers_largest.begin() + pos, to_push); // Insère à la position trouvée
     }
-    return *this;
-}
-
-PmergeMe::~PmergeMe()
-{
-}
 
 
-void PmergeMe::check_duplicates(char **av)
-{
-    int i = 1;
-    
-    while (av[i])
+    // Si la liste d'origine a un nombre impair d'éléments, insère le straggler
+    if (_av.size() % 2 != 0)
     {
-        if (atoi(av[i]) < 0)
+        // Récupère le dernier élément
+        size_t pos = 0;
+        while (pos < _numbers_largest.size() && _numbers_largest[pos] < _straggler)
         {
-            throw std::invalid_argument("Error: Only positive numbers are allowed");
+            pos++; // Trouve la première position où straggler doit être inséré
         }
-        int j = i + 1;
-        while (av[j])
-        {
-            
-            if (atoi(av[i]) == atoi(av[j]))
-            {
-                throw std::invalid_argument("Error: Duplicate argument");
-            }
-            j++;
-        }
-        i++;
+        _numbers_largest.insert(_numbers_largest.begin() + pos, _straggler); // Insère à la position trouvée
     }
 }
 
-void check_digits(char **av)
+void PmergeMe::fill_insertion_indices()
 {
-    int i = 1;
-    
-    while (av[i])
+    if (_numbers_smallest.empty())
+        return;
+
+    size_t last_pos = 1;
+
+    // Ajoute les indices selon la séquence de Jacobsthal
+    for (size_t i = 0; i < _jacobsthal.size(); i++)
     {
-        int j = 0;
-        int sign = 0;
-        while (av[i][j])
+        _indexes.push_back(_jacobsthal[i]);
+
+        // Ajoute les indices intermédiaires entre last_pos et la valeur actuelle de Jacobsthal
+        for (size_t j = _jacobsthal[i] - 1; j > last_pos; j--)
         {
-            while (av[i][j] && (av[i][j] == '-' || av[i][j] == '+'))
-            {
-                sign++;
-                if (sign > 1)
-                {
-                    throw std::invalid_argument("Error: Invalid argument");
-                }
-                j++;
-            }
-            while (isdigit(av[i][j]))
-                j++;
-            if (av[i][j] && !isdigit(av[i][j]))
-            {
-                throw std::invalid_argument("Error: Invalid argument");
-            }
+            _indexes.push_back(j);
         }
-        i++;
+
+        last_pos = _jacobsthal[i]; // Mise à jour de la dernière position atteinte
+    }
+    // Ajoute les indices restants jusqu'à la taille de _sorted
+    for (size_t i = last_pos + 1; i <= _numbers_largest.size(); i++)
+    {
+        _indexes.push_back(i);
     }
 }
 
-void PmergeMe::add_av(char **av)
+
+int	PmergeMe::jacobsthal_sequence(int n)
 {
-    for (int i = 1; av[i]; i++)
-        _av.push_back(atoi(av[i]));
+	if (n == 0)
+		return (0);
+	if (n == 1)
+		return (1);
+	return (jacobsthal_sequence(n - 1) + 2 * jacobsthal_sequence(n - 2));
 }
 
-void PmergeMe::make_pairs()
+// create vector of jaobsthal numbers
+void	PmergeMe::stock_jacobsthal_sequence(void)
 {
-    std::vector<int>::iterator it;
-    std::vector<int>::iterator it2;
-    it = _av.begin();
-    while(it <= _av.end())
-    {
-        it2 = it + 1;
-        if (it2 == _av.end())
-        {
-            _straggler = *it;
-            break;
-        }
-        if (it2 <=_av.end())
-        {
-            _makepairs.push_back(std::make_pair(*it, *it2));
-        }
-        it += 2;
-    }
-}
+	size_t size;
+	size_t jacobindex;
+	int index;
 
-void PmergeMe::sort_pairs()
-{
-    std::vector<std::pair<int, int> >::iterator it;
-    it = _makepairs.begin();
-    for(; it != _makepairs.end(); it++)
-    {
-        if (it->first < it->second)
-        {
-            std::swap(it->first, it->second);
-        }
-    }
-    it = _makepairs.begin();
-}
-
-void PmergeMe::push_pairs()
-{
-    std::vector<std::pair<int, int> >::iterator it;
-    it = _makepairs.begin();
-    for(; it != _makepairs.end(); it++)
-    {
-        _numbers_smallest.push_back(it->first);
-        _numbers_largest.push_back(it->second);
-    }
-}
-    
-void PmergeMe::split_sort_pairs()
-{
-    
+	size = _numbers_smallest.size();
+	index = 3;
+	while ((jacobindex = jacobsthal_sequence(index)) <= size)
+	{
+		_jacobsthal.push_back(jacobindex);
+		index++;
+	}
 }
 
 void PmergeMe::parse(char **av)
@@ -153,6 +111,13 @@ void PmergeMe::parse(char **av)
     add_av(av);
     make_pairs();
     sort_pairs();
+    split_sort_pairs(_makepairs, 0, _makepairs.size() - 1);
     push_pairs();
-    split_sort_pairs();
+    stock_jacobsthal_sequence();
+    fill_insertion_indices();
+    insert_into_sorted(); 
+    for(unsigned long int i = 0; i < _numbers_largest.size(); ++i)
+    {
+        std::cout << _numbers_largest[i] << std::endl;
+    }
 }

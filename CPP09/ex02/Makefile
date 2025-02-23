@@ -1,5 +1,6 @@
 NAME	= PmergeMe
 SRC		= main.cpp \
+		Azy.cpp \
 			PmergeMe.cpp
 OBJ		= $(SRC:%.cpp=%.o)
 CC		= c++
