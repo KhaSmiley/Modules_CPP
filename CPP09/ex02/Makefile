@@ -1,10 +1,10 @@
 NAME	= PmergeMe
 SRC		= main.cpp \
-		Azy.cpp \
 			PmergeMe.cpp
 OBJ		= $(SRC:%.cpp=%.o)
 CC		= c++
-FLAGS	= -Wall -Wextra -Werror -g3 -std=c++98
+FLAGS	= -Wall -Wextra -Werror -g3 -std=c++98 
+# -fno-stack-protector
 
 all: $(NAME)
 

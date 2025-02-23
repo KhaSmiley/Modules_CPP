@@ -18,6 +18,9 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <stdexcept>
+#include <limits.h>
+#include <deque>
 
 
 
@@ -61,6 +64,46 @@ class PmergeMe
         std::vector<int> _numbers_largest;
         std::vector<int> _jacobsthal;
         std::vector<int> _indexes;
+};
+
+class PmergeMeDeque
+{
+    public:
+        PmergeMeDeque();
+        PmergeMeDeque(const PmergeMeDeque &src);
+        PmergeMeDeque &operator=(const PmergeMeDeque &src);
+        ~PmergeMeDeque();
+       
+        void parse(char **av);
+        void check_duplicates(char **av);
+        void check_digits(char **av);
+        void add_av(char **av);
+        void make_pairs();
+        void sort_pairs();
+        void push_pairs();
+        void split_sort_pairs(std::deque<std::pair<int, int> > &pairs, int begin, int end);
+        void merge_sort(std::deque<std::pair<int, int> > &pairs, int begin, int mid, int end);
+        void stock_jacobsthal_sequence(void);
+        void fill_insertion_indices();
+        void insert_into_sorted(void);
+        int  jacobsthal_sequence(int n);
+
+        struct ComparePairs
+        {
+            bool operator()(const std::pair<int, int>& a, const std::pair<int, int>& b) const
+            {
+                return a.first < b.first;
+            }
+        };
+
+    private:
+        std::deque<int> _av;
+        std::deque<std::pair<int, int> > _makepairs;
+        int _straggler;
+        std::deque<int> _numbers_smallest;
+        std::deque<int> _numbers_largest;
+        std::deque<int> _jacobsthal;
+        std::deque<int> _indexes;
 };
 
 #endif
