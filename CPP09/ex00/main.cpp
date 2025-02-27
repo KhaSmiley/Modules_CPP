@@ -19,10 +19,8 @@ int main(int ac, char **av)
         BitcoinExchange Exchanger;
         try
         {
-            
             Exchanger.parse_file(av[1]);
-            if (Exchanger.stock_data())
-                return 1;
+            Exchanger.stock_data();
             Exchanger.makeitwork();
         }
         catch (const std::exception &e)
@@ -30,4 +28,6 @@ int main(int ac, char **av)
             std::cout << e.what();
         }
     }
+    else
+        std::cout << "Error: ./btc [filename]" << std::endl;
 }

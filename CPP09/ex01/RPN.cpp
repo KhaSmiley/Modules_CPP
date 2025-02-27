@@ -46,24 +46,20 @@ void RPN::parse_input()
 
     while (i < _input.size())
     {
-        // Skip whitespace
         while (i < _input.size() && (_input[i] == ' ' || _input[i] == '\t'))
             i++;
-            
         if (i >= _input.size())
             break;
-
-        // Handle numbers
         if (_input[i] >= '0' && _input[i] <= '9')
         {
+            if (_input[i + 1] && _input[i + 1] >= '1' && _input[i + 1] <= '9')
+                    throw invalidInput();
             stack_size++;
-            // Skip the rest of the number
-            while (i < _input.size() && _input[i] >= '0' && _input[i] <= '9')
+            while(i < _input.size() && _input[i] == '0')
                 i++;
+            i++;
             continue;
         }
-
-        // Handle operators
         if (_input[i] == '+' || _input[i] == '-' || _input[i] == '*' || _input[i] == '/')
         {
             if (stack_size < 2)  // Need at least 2 numbers for an operation

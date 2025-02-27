@@ -16,5 +16,7 @@ int main(int ac, char **av)
             std::cerr << e.what();
         }
     }
+    else
+        std::cout << "Error: args" << std::endl;
     return 0;
 }
