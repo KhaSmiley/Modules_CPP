@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 05:35:13 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/21 03:32:19 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/27 23:00:41 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void PmergeMe::check_digits(char **av)
                 sign++;
                 if (sign > 1)
                 {
-                    throw std::invalid_argument("Error1: Invalid argument");
+                    throw std::invalid_argument("Error: Invalid argument");
                 }
                 j++;
             }
@@ -105,7 +105,7 @@ void PmergeMe::check_digits(char **av)
                 j++;
             if (av[i][j] && !isdigit(av[i][j]))
             {
-                throw std::invalid_argument("Error2: Invalid argument");
+                throw std::invalid_argument("Error: Invalid argument");
             }
         }
         i++;
@@ -170,8 +170,13 @@ void PmergeMeDeque::check_digits(char **av)
 
 void PmergeMe::add_av(char **av)
 {
+    std::cout << "Before : " ;
     for (int i = 1; av[i]; i++)
+    {
+        std::cout << av[i] << " ";
         _av.push_back(atoi(av[i]));
+    }
+    std::cout << std::endl;
 }
 
 void PmergeMe::make_pairs()
@@ -343,7 +348,13 @@ void PmergeMe::parse(char **av)
     push_pairs();
     stock_jacobsthal_sequence();
     fill_insertion_indices();
-    insert_into_sorted(); 
+    insert_into_sorted();
+    std::cout << "After : ";
+    for(size_t i = 0; i < _numbers_largest.size(); i++)
+    {
+        std::cout << _numbers_largest[i] << " ";
+    }
+    std::cout << std::endl;
 }
 
 // ------------------------------- Deque -------------------------------
@@ -503,8 +514,8 @@ void PmergeMeDeque::make_pairs()
 
 void PmergeMeDeque::parse(char **av)
 {
-    // check_digits(av);
-    // check_duplicates(av);
+    check_digits(av);
+    check_duplicates(av);
     add_av(av);
     make_pairs();
     sort_pairs();

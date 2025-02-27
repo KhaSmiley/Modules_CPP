@@ -52,11 +52,11 @@ void RPN::parse_input()
             break;
         if (_input[i] >= '0' && _input[i] <= '9')
         {
-            if (_input[i + 1] && _input[i + 1] >= '1' && _input[i + 1] <= '9')
+            if (_input[i + 1] && _input[i + 1] != ' ' && _input[i + 1] != '\t')
                     throw invalidInput();
-            stack_size++;
             while(i < _input.size() && _input[i] == '0')
                 i++;
+            stack_size++;
             i++;
             continue;
         }

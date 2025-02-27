@@ -6,7 +6,7 @@
 /*   By: kboulkri <kboulkri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 05:39:56 by kboulkri          #+#    #+#             */
-/*   Updated: 2025/02/18 05:43:36 by kboulkri         ###   ########.fr       */
+/*   Updated: 2025/02/27 21:50:48 by kboulkri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,13 @@ int BitcoinExchange::parse_date(std::string line)
         return (2);
     if (line.length() < 10 || line[4] != '-' || line[7] != '-')
         return (1);
-
+    for(int i = 0; i < 10; i++)
+    {
+        if (i == 4 || i == 7)
+            continue;
+        if (!isdigit(line[i]))
+            return (1);
+    }
     int Year;
     int Month;
     int Day;
@@ -222,9 +228,7 @@ int BitcoinExchange::parse_value(std::string line)
         {
             i++;
         }
-        while(line[++i] && (line[i] == ' ' || line[i] == '\t'))
-        {
-        }
+        while(line[++i] && (line[i] == ' ' || line[i] == '\t'));
         start = i;
         while(line[i] && (isdigit(line[i]) || line[i] == '.'))
         {
@@ -249,7 +253,7 @@ void BitcoinExchange::checkDataBase(const std::string& filename)
     
     std::string line;
     std::getline(file, line);
-
+    
     while (std::getline(file, line)) 
     {
         try 
