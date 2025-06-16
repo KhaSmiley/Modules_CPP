@@ -245,41 +245,53 @@ void PmergeMe::split_sort_pairs(std::vector<std::pair<int, int> > &pairs, int be
     merge_sort(pairs, begin, halfArray, end);
 }
 
+int PmergeMe::binary_search(std::vector<int> sorted, int to_push, int begin, int end)
+{
+	int mid;
+
+	while (begin <= end)
+	{
+		mid = begin + (end - begin) / 2;
+		if (to_push == sorted.at(mid))
+			return (mid);
+
+		if (to_push > sorted.at(mid))
+			begin = mid + 1;
+		else
+			end = mid - 1;
+	}
+	if (to_push > sorted.at(mid))
+		return (mid + 1);
+	else
+		return (mid);
+}
+
 void PmergeMe::insert_into_sorted(void)
 {
     // Insère le plus petit élément en premier
     _numbers_largest.insert(_numbers_largest.begin(), _numbers_smallest[0]);
 
-    // Insère les éléments restants en utilisant les indices Jacobsthal
-    for (size_t i = 0; i < _indexes.size(); ++i) // Utilisation d'une boucle classique
+    // Insère les éléments restants en utilisant les indices Jacobsthal et binary search
+    for (size_t i = 0; i < _indexes.size(); ++i)
     {
         size_t index = _indexes[i];
         if (index < 1 || index > _numbers_smallest.size()) {
             std::cerr << "Index out of bounds: " << index << std::endl;
-            continue; // Ou gérez l'erreur comme vous le souhaitez
+            continue;
         }
         int to_push = _numbers_smallest.at(index - 1); // Récupère l'élément à insérer
 
-        // Trouve la position d'insertion
-        size_t pos = 0;
-        while (pos < _numbers_largest.size() && _numbers_largest[pos] < to_push)
-        {
-            pos++; // Trouve la première position où to_push doit être inséré
-        }
+        // Trouve la position d'insertion avec binary search
+        int pos = binary_search(_numbers_largest, to_push, 0, _numbers_largest.size() - 1);
         
         _numbers_largest.insert(_numbers_largest.begin() + pos, to_push); // Insère à la position trouvée
     }
 
-
     // Si la liste d'origine a un nombre impair d'éléments, insère le straggler
     if (_av.size() % 2 != 0)
     {
-        // Récupère le dernier élément
-        size_t pos = 0;
-        while (pos < _numbers_largest.size() && _numbers_largest[pos] < _straggler)
-        {
-            pos++; // Trouve la première position où straggler doit être inséré
-        }
+        // Utiliser binary search pour trouver la position d'insertion
+        int pos = binary_search(_numbers_largest, _straggler, 0, _numbers_largest.size() - 1);
         _numbers_largest.insert(_numbers_largest.begin() + pos, _straggler); // Insère à la position trouvée
     }
 }
@@ -359,6 +371,27 @@ void PmergeMe::parse(char **av)
 
 // ------------------------------- Deque -------------------------------
 
+int PmergeMeDeque::binary_search(std::deque<int> sorted, int to_push, int begin, int end)
+{
+    int mid;
+
+    while (begin <= end)
+    {
+        mid = begin + (end - begin) / 2;
+        if (to_push == sorted.at(mid))
+            return (mid);
+
+        if (to_push > sorted.at(mid))
+            begin = mid + 1;
+        else
+            end = mid - 1;
+    }
+    if (to_push > sorted.at(mid))
+        return (mid + 1);
+    else
+        return (mid);
+}
+
 void PmergeMeDeque::insert_into_sorted(void)
 {
     _numbers_largest.push_front(_numbers_smallest[0]);
@@ -372,22 +405,16 @@ void PmergeMeDeque::insert_into_sorted(void)
         }
         int to_push = _numbers_smallest.at(index - 1);
         
-        size_t pos = 0;
-        while (pos < _numbers_largest.size() && _numbers_largest[pos] < to_push)
-        {
-            pos++;
-        }
+        // Use binary search to find insertion position
+        int pos = binary_search(_numbers_largest, to_push, 0, _numbers_largest.size() - 1);
         
         _numbers_largest.insert(_numbers_largest.begin() + pos, to_push);
     }
 
     if (_av.size() % 2 != 0)
     {
-        size_t pos = 0;
-        while (pos < _numbers_largest.size() && _numbers_largest[pos] < _straggler)
-        {
-            pos++;
-        }
+        // Use binary search to find insertion position
+        int pos = binary_search(_numbers_largest, _straggler, 0, _numbers_largest.size() - 1);
         _numbers_largest.insert(_numbers_largest.begin() + pos, _straggler);
     }
 }

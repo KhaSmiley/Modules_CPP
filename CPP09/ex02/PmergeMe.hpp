@@ -46,6 +46,7 @@ class PmergeMe
         void fill_insertion_indices();
         void insert_into_sorted(void);
         int	 jacobsthal_sequence(int n);
+        int  binary_search(std::vector<int> sorted, int to_push, int begin, int end);
 
         struct ComparePairs
         {
@@ -87,6 +88,7 @@ class PmergeMeDeque
         void fill_insertion_indices();
         void insert_into_sorted(void);
         int  jacobsthal_sequence(int n);
+        int  binary_search(std::deque<int> sorted, int to_push, int begin, int end);
 
         struct ComparePairs
         {
